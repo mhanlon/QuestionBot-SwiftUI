@@ -11,6 +11,7 @@
 		85BEB65025C9A9B2002EF620 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BEB64F25C9A9B2002EF620 /* ContentView.swift */; };
 		85BEB65225C9A9B4002EF620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BEB65125C9A9B4002EF620 /* Assets.xcassets */; };
 		85BEB65525C9A9B4002EF620 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BEB65425C9A9B4002EF620 /* Preview Assets.xcassets */; };
+		85BEB65E25C9A9C8002EF620 /* QuestionAnswerer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BEB65D25C9A9C8002EF620 /* QuestionAnswerer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		85BEB65125C9A9B4002EF620 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85BEB65425C9A9B4002EF620 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85BEB65625C9A9B4002EF620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85BEB65D25C9A9C8002EF620 /* QuestionAnswerer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				85BEB64D25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift */,
 				85BEB64F25C9A9B2002EF620 /* ContentView.swift */,
+				85BEB65D25C9A9C8002EF620 /* QuestionAnswerer.swift */,
 				85BEB65125C9A9B4002EF620 /* Assets.xcassets */,
 				85BEB65625C9A9B4002EF620 /* Info.plist */,
 				85BEB65325C9A9B4002EF620 /* Preview Content */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85BEB65025C9A9B2002EF620 /* ContentView.swift in Sources */,
+				85BEB65E25C9A9C8002EF620 /* QuestionAnswerer.swift in Sources */,
 				85BEB64E25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
