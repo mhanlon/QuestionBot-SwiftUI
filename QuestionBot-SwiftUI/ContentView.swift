@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    var responseText: String = "Hello Human, I'm QuestionBot.\nAsk me a question."
+    @State var question: String = ""
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            HStack {
+                Text("🤖")
+                    .font(.largeTitle)
+                Text(self.responseText)
+            }
+            TextField("Type your question...", text: $question)
+            Button("Ask") {
+                // ask the question...
+            }
+        }
     }
 }
 
