@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    var responseText: String = "Hello Human, I'm QuestionBot.\nAsk me a question."
+    @State var responseText: String = "Hello Human, I'm QuestionBot.\nAsk me a question." // Add an @State property wrapper
     @State var question: String = ""
+    
+    // Add our brains to the equation
+    let questionAnswerer = MyQuestionAnswerer()
     
     var body: some View {
         VStack {
@@ -26,6 +29,9 @@ struct ContentView: View {
                 .background(Color.white)
             Button("Ask") {
                 // ask the question...
+                // And assign the answer to our `answerText` property to be displayed in the UI.
+                self.responseText = self.questionAnswerer.responseTo(question: self.question)
+                
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 44)
             .foregroundColor(.white)
