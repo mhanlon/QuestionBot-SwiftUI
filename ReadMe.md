@@ -43,3 +43,7 @@ In the [`action` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/act
 
 ### `main`
 In the [`main` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/main), we're aligned with the `action` branch, so look out for spoilers! If you want to try to implement it from scratch you should use the `start` branch.
+
+## Next Steps
+This code almost, but *not* quite, replicates the QuestionBot project. For example, the "Ask" button doesn't get disabled when there is no text in the question field. The question text also isn't cleared after we respond to the question.
+Can you spot other issues you might want to address?
