@@ -13,21 +13,34 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Spacer().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 44) // To account for the notch we have a little space at the top
             HStack {
                 Text("🤖")
                     .font(.largeTitle)
+                    .padding()
                 Text(self.responseText)
+                Spacer()
             }
             TextField("Type your question...", text: $question)
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 120)
+                .background(Color.white)
             Button("Ask") {
                 // ask the question...
             }
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 44)
+            .foregroundColor(.white)
+            .background(Color.blue)
+         Spacer()
         }
+        .background(Color(UIColor.systemGray4))
+        .edgesIgnoringSafeArea(.all) // This necessitates the Spacer() which is our first element in the VStack,
+        // but it will also color the whole background light gray...
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice("iPhone 11")
     }
 }
