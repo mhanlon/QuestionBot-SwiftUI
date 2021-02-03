@@ -1,5 +1,5 @@
 # QuestionBot-SwiftUI
-This is a version of the QuestionBot project that appears in the Develop in Swift Explorations curriculum, but re-done in SwiftUI.
+This is a version of the QuestionBot project that appears in the Develop in Swift Explorations curriculum (https://apple.co/developinswiftexplorations), but re-done in SwiftUI.
 
 The intention is to show you how you might translate a familiar UI to SwiftUI and what it means for your code. You will be able to compare and constrast this project against your own QuestionBot project from Develop in Swift Explorations.
 
@@ -40,3 +40,6 @@ In the [`ui-styling` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree
 
 ### `action`
 In the [`action` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/action), we'll hook up the Ask button to hit our logic from the `QuestionAnswerer.swift`.
+
+### `main`
+In the [`main` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/main), we're aligned with the `action` branch, so look out for spoilers! If you want to try to implement it from scratch you should use the `start` branch.
