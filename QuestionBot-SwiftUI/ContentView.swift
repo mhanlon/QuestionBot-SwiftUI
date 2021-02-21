@@ -11,42 +11,74 @@ struct ContentView: View {
     @State var responseText: String = "Hello Human, I'm QuestionBot.\nAsk me a question." // Add an @State property wrapper
     @State var question: String = ""
     
+    //Let's use some haptic feedback when we get an answer from the bot
+    @State private var feedback = UINotificationFeedbackGenerator()
+    
     // Add our brains to the equation
     let questionAnswerer = MyQuestionAnswerer()
     
     var body: some View {
+        
         VStack {
-            Spacer().frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 44) // To account for the notch we have a little space at the top
+            
             HStack {
                 Text("🤖")
-                    .font(.largeTitle)
-                    .padding()
+                    .font(.custom("Helvetica", size: 60))
+                Spacer(minLength: 10)
                 Text(self.responseText)
+                    .font(.title3)
                 Spacer()
             }
-            TextField("Type your question...", text: $question)
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 120)
-                .background(Color.white)
-            Button("Ask") {
+            
+            //OPTION 1: Multi line question
+            TextEditor(text: $question)
+                .frame(height: 100)
+                //.keyboardType(.webSearch)
+                .cornerRadius(10)
+                
+            //OPTION 2: Single line question
+            /*
+             TextField("Type your question...", text: $question)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                //.frame(maxHeight: 100)
+                //.background(Color(.white))
+            */
+            
+            Text("Enter your question above and see what the bot will answer...")
+                .font(.caption)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                .foregroundColor(Color(.gray))
+            Button("Ask me!") {
                 // ask the question...
                 // And assign the answer to our `answerText` property to be displayed in the UI.
                 self.responseText = self.questionAnswerer.responseTo(question: self.question)
                 
+                if self.responseText.isEmpty || responseText == "?" {
+                    self.feedback.notificationOccurred(.error)
+                } else {
+                    self.feedback.notificationOccurred(.success)
+                }
             }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 44)
+            .frame(width: 150, height: 50)
             .foregroundColor(.white)
             .background(Color.blue)
-         Spacer()
+            .cornerRadius(10)
+            
+            Spacer()
         }
-        .background(Color(UIColor.systemGray4))
-        .edgesIgnoringSafeArea(.all) // This necessitates the Spacer() which is our first element in the VStack,
-        // but it will also color the whole background light gray...
+        .padding()
+        .background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .previewDevice("iPhone 11")
+        Group {
+            ContentView()
+                .previewDevice("iPhone 11")
+                //.background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
+        }
+
     }
 }

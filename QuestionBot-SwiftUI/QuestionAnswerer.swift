@@ -11,6 +11,13 @@ struct MyQuestionAnswerer {
     func responseTo(question: String) -> String {
         // TODO: Write a response
         // Add in your logic so this is a bit more interesting...
-        return "?"
+        var answer = ""
+        
+        switch question {
+            case "Howdy" : answer = "Greetings!"
+            default: answer = ""
+        }
+        
+        return answer
     }
 }
