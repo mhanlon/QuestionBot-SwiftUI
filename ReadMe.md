@@ -21,7 +21,7 @@ You may have also changed your layout by editing the `Main.storyboard` file:
 
 ![Question Bot Storyboard](images/QuestionBotStoryboard.png "QuestionBot Storyboard image")
 
-This is the user interface we're going to replicate in SwiftUI, and wWe're going to re-use the brains that you wrote in our SwiftUI version of the app.
+This is the user interface we're going to replicate in SwiftUI, and we're going to re-use the brains that you wrote in our SwiftUI version of the app.
 
 ## How to Use this Repo
 I would highly recommend you start with the [`start` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/start). This is where we slowly build up our user interface in SwiftUI. And then we progress through the other branches described below. 
