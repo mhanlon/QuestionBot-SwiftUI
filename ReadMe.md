@@ -41,8 +41,11 @@ In the [`ui-styling` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree
 ### `action`
 In the [`action` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/action), we'll hook up the Ask button to hit our logic from the `QuestionAnswerer.swift`.
 
+### `styledUIAndFeedback`
+In the [`styledUIAndFeedback` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/styledUIAndFeedback), we add haptic feedback, an alternative style for asking for the user's question, and some UI tweaks.
+
 ### `main`
-In the [`main` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/main), we're aligned with the `action` branch, so look out for spoilers! If you want to try to implement it from scratch you should use the `start` branch.
+In the [`main` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/main), we're aligned with the `styledUIAndFeedback` branch, so look out for spoilers! If you want to try to implement it from scratch you should use the `start` branch.
 
 ## Next Steps
 This code almost, but *not* quite, replicates the QuestionBot project. For example, the "Ask" button doesn't get disabled when there is no text in the question field. The question text also isn't cleared after we respond to the question.
