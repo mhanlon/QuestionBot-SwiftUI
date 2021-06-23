@@ -115,6 +115,7 @@ struct ContentView: View {
                             .listRowBackground(Color.gray)
                     }
                 }
+                .onDelete(perform: deleteCommunication)
             }
             .animation(.easeInOut, value: self.communications)
             .listStyle(.insetGrouped)
@@ -134,6 +135,11 @@ struct ContentView: View {
         .background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
         
     }
+
+    func deleteCommunication(at offsets: IndexSet) {
+        self.allCommunications.remove(atOffsets: offsets)
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
