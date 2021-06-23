@@ -21,7 +21,7 @@ struct ContentView: View {
     //Let's use some haptic feedback when we get an answer from the bot
     @State private var feedback = UINotificationFeedbackGenerator()
     
-    @State var communication : [Greeting] = []
+    @State var history : [Greeting] = []
     
     // Add our brains to the equation
     let questionAnswerer = MyQuestionAnswerer()
@@ -33,6 +33,12 @@ struct ContentView: View {
         return formatter
     }()
     
+    /*
+    init() {
+       UITableView.appearance().backgroundColor = .systemGray3
+    }
+    */
+    
     var body: some View {
         
         VStack {
@@ -40,7 +46,7 @@ struct ContentView: View {
             HStack {
                 Text("🤖")
                     .font(.custom("Helvetica Neue", size: 60))
-                Spacer(minLength: 10)
+                Spacer(minLength: 15)
                 Text(self.responseText)
                     .font(.title3)
                 Spacer()
@@ -49,16 +55,8 @@ struct ContentView: View {
             //OPTION 1: Multi line question
             TextEditor(text: $question)
                 .frame(height: 100)
-                //.keyboardType(.webSearch)
                 .cornerRadius(10)
-                
-            //OPTION 2: Single line question
             
-//             TextField("Type your question...", text: $question)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                //.frame(maxHeight: 100)
-//                //.background(Color(.white))
-//
             Text("Enter your question above and see what the bot will answer...")
                 .font(.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -69,8 +67,11 @@ struct ContentView: View {
                 // And assign the answer to our `answerText` property to be displayed in the UI.
                 self.responseText = self.questionAnswerer.responseTo(question: self.question)
                 
-                let greeting = Greeting(question: self.question, answer: self.responseText, date: Date())
-                self.communication.insert(greeting, at: 0)
+                let greeting = Greeting(
+                    question: self.question,
+                    answer: self.responseText,
+                    date: Date())
+                self.history.insert(greeting, at: 0)
                 
                 if self.responseText.isEmpty || self.responseText == "🤷‍♀️" {
                     self.feedback.notificationOccurred(.error)
@@ -83,30 +84,35 @@ struct ContentView: View {
             .background(Color.blue)
             .cornerRadius(10)
             
-            Spacer()
+            Spacer(minLength: 20)
             
-            HStack{
-                Text("History (\(self.communication.count))").font(.title3)
-                Spacer()
-            }
-            List {
-                ForEach(self.communication, id: \.self) { comm in
-                    
-                    Section(footer: Text("\(comm.date, formatter: Self.dateFormat)")) {
-                        HStack {
-                            Spacer()
-                            Text(comm.question)
-                        }
-                        .listRowBackground(Color.accentColor)
-                        Text(comm.answer)
-                            .listRowBackground(Color.gray)
-                    }
-                    
+            if self.history.count > 0 {
+                HStack{
+                    Text("History (\(self.history.count))").font(.title3)
+                    Spacer()
                 }
+                
+                List {
+                    ForEach(self.history, id: \.self) { comm in
+                        
+                        Section(footer: Text("\(comm.date, formatter: Self.dateFormat)")) {
+                            HStack {
+                                Spacer()
+                                Text(comm.question)
+                            }
+                            .listRowBackground(Color.accentColor)
+                            
+                            Text(comm.answer)
+                                .listRowBackground(Color.gray)
+                        }
+                        
+                    }
+                }
+                .listStyle(.insetGrouped)
+                .cornerRadius(10)
+                .animation(.easeInOut(duration: 2), value: history)
             }
-            .listStyle(.insetGrouped)
-            .frame(maxHeight: 350)
-            .cornerRadius(10)
+            
         }
         .padding()
         .background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
@@ -120,7 +126,8 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
                 .preferredColorScheme(.dark)
                 .previewDevice("iPhone 12 Pro")
+                .previewInterfaceOrientation(.portrait)
         }
-
+        
     }
 }

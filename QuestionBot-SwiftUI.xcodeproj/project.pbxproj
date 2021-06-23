@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		209E37162683A49E00882DE0 /* TestingThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209E37152683A49E00882DE0 /* TestingThings.swift */; };
 		85BEB64E25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BEB64D25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift */; };
 		85BEB65025C9A9B2002EF620 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BEB64F25C9A9B2002EF620 /* ContentView.swift */; };
 		85BEB65225C9A9B4002EF620 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85BEB65125C9A9B4002EF620 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		209E37152683A49E00882DE0 /* TestingThings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingThings.swift; sourceTree = "<group>"; };
 		85BEB64A25C9A9B2002EF620 /* QuestionBot-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "QuestionBot-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85BEB64D25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBot_SwiftUIApp.swift; sourceTree = "<group>"; };
 		85BEB64F25C9A9B2002EF620 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				85BEB65125C9A9B4002EF620 /* Assets.xcassets */,
 				85BEB65625C9A9B4002EF620 /* Info.plist */,
 				85BEB65325C9A9B4002EF620 /* Preview Content */,
+				209E37152683A49E00882DE0 /* TestingThings.swift */,
 			);
 			path = "QuestionBot-SwiftUI";
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85BEB65025C9A9B2002EF620 /* ContentView.swift in Sources */,
+				209E37162683A49E00882DE0 /* TestingThings.swift in Sources */,
 				85BEB65E25C9A9C8002EF620 /* QuestionAnswerer.swift in Sources */,
 				85BEB64E25C9A9B2002EF620 /* QuestionBot_SwiftUIApp.swift in Sources */,
 			);
@@ -276,7 +280,7 @@
 				DEVELOPMENT_TEAM = YCE527G9Y3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "QuestionBot-SwiftUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +302,7 @@
 				DEVELOPMENT_TEAM = YCE527G9Y3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "QuestionBot-SwiftUI/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
