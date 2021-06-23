@@ -22,7 +22,15 @@ struct ContentView: View {
     //Let's use some haptic feedback when we get an answer from the bot
     @State private var feedback = UINotificationFeedbackGenerator()
     
-    @State var communication : [Greeting] = []
+    @State var communications : [Greeting] = []
+    
+    @State private var allCommunications: [Greeting] = [] {
+        willSet {
+            self.communications = newValue
+        }
+    }
+    
+    @State var searchText = ""
     
     // Add our brains to the equation
     let questionAnswerer = MyQuestionAnswerer()
@@ -50,16 +58,16 @@ struct ContentView: View {
             //OPTION 1: Multi line question
             TextEditor(text: $question)
                 .frame(height: 100)
-                //.keyboardType(.webSearch)
+            //.keyboardType(.webSearch)
                 .cornerRadius(10)
-                
+            
             //OPTION 2: Single line question
             
-//             TextField("Type your question...", text: $question)
-//                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                //.frame(maxHeight: 100)
-//                //.background(Color(.white))
-//
+            //             TextField("Type your question...", text: $question)
+            //                .textFieldStyle(RoundedBorderTextFieldStyle())
+            //                //.frame(maxHeight: 100)
+            //                //.background(Color(.white))
+            //
             Text("Enter your question above and see what the bot will answer...")
                 .font(.caption)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -71,12 +79,14 @@ struct ContentView: View {
                 self.responseText = self.questionAnswerer.responseTo(question: self.question)
                 
                 let greeting = Greeting(question: self.question, answer: self.responseText, date: Date())
-                self.communication.insert(greeting, at: 0)
+                self.allCommunications.insert(greeting, at: 0)
                 if self.responseText.isEmpty || self.responseText == "🤷‍♀️" {
                     self.feedback.notificationOccurred(.error)
                 } else {
                     self.feedback.notificationOccurred(.success)
                 }
+                // Clear the question...
+                self.question = ""
             }
             .frame(width: 150, height: 50)
             .foregroundColor(.white)
@@ -84,12 +94,16 @@ struct ContentView: View {
             .cornerRadius(10)
             Spacer()
             
+            if self.allCommunications.count > 0 {
+                TextField("Search:", text: $searchText)
+                .textFieldStyle(.roundedBorder)
+            }
             HStack{
-                Text("History (\(self.communication.count))").font(.title3)
+                Text("History (\(self.communications.count))").font(.title3)
                 Spacer()
             }
             List {
-                ForEach(self.communication, id: \.uuid) { comm in
+                ForEach(self.communications, id: \.uuid) { comm in
                     
                     Section(footer: Text("\(comm.date, formatter: Self.dateFormat)")) {
                         HStack {
@@ -102,10 +116,19 @@ struct ContentView: View {
                     }
                 }
             }
-            .animation(.easeInOut)
+            .animation(.easeInOut, value: self.communications)
             .listStyle(.insetGrouped)
             .frame(maxHeight: 350)
             .cornerRadius(10)
+            .searchable(text: $searchText)
+            .onChange(of: self.searchText) { searchText in
+                if !searchText.isEmpty {
+                    communications = allCommunications.filter { $0.question.contains(searchText) || $0.answer.contains(searchText) }
+                } else {
+                    communications = allCommunications
+                }
+            }
+            
         }
         .padding()
         .background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
@@ -120,6 +143,6 @@ struct ContentView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewDevice("iPhone 12 Pro")
         }
-
+        
     }
 }
