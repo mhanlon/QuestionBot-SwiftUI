@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Greeting : Hashable {
+    let uuid = UUID()
     let question : String
     let answer : String
     let date : Date
@@ -71,7 +72,6 @@ struct ContentView: View {
                 
                 let greeting = Greeting(question: self.question, answer: self.responseText, date: Date())
                 self.communication.insert(greeting, at: 0)
-                
                 if self.responseText.isEmpty || self.responseText == "🤷‍♀️" {
                     self.feedback.notificationOccurred(.error)
                 } else {
@@ -82,7 +82,6 @@ struct ContentView: View {
             .foregroundColor(.white)
             .background(Color.blue)
             .cornerRadius(10)
-            
             Spacer()
             
             HStack{
@@ -90,7 +89,7 @@ struct ContentView: View {
                 Spacer()
             }
             List {
-                ForEach(self.communication, id: \.self) { comm in
+                ForEach(self.communication, id: \.uuid) { comm in
                     
                     Section(footer: Text("\(comm.date, formatter: Self.dateFormat)")) {
                         HStack {
@@ -101,9 +100,9 @@ struct ContentView: View {
                         Text(comm.answer)
                             .listRowBackground(Color.gray)
                     }
-                    
                 }
             }
+            .animation(.easeInOut)
             .listStyle(.insetGrouped)
             .frame(maxHeight: 350)
             .cornerRadius(10)
