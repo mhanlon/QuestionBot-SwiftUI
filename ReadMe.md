@@ -21,13 +21,11 @@ In QuestionBot, in Explorations, your focus is on building the brains for your a
 
 You may have also changed your layout by editing the `Main.storyboard` file:
 
-![Question Bot Storyboard](images/QuestionBotStoryboard.png "QuestionBot Storyboard image")
-
 ![Question Bot Storyboard - iOS 15](images/iOS15Screenshot.png "QuestionBot Storyboard image for iOS 15")
 
 
+This is the user interface we're going to replicate in SwiftUI, and we're going to re-use the brains that you wrote in our SwiftUI version of the app. Brand new and all iOS 15-ready!
 
-This is the user interface we're going to replicate in SwiftUI, and we're going to re-use the brains that you wrote in our SwiftUI version of the app.
 
 ## How to Use this Repo
 I would highly recommend you start with the [`start` branch](https://github.com/mhanlon/QuestionBot-SwiftUI/tree/start). This is where we slowly build up our user interface in SwiftUI. And then we progress through the other branches described below. 
