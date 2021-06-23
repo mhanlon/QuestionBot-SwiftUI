@@ -7,6 +7,8 @@ For this project, you will need:
 * A Mac (running Catalina, macOS 10.15, at least)
 * Xcode (version 12 is better)
 
+**NEW!** With some of these changes, you now need a Mac and Xcode 13 and our app runs on iOS 15.
+
 ## The Setup
 In QuestionBot, in Explorations, your focus is on building the brains for your app. The file `QuestionAnswerer.swift` defines a `MyQuestionAnswerer` struct that has one simple function:
 
@@ -20,6 +22,10 @@ In QuestionBot, in Explorations, your focus is on building the brains for your a
 You may have also changed your layout by editing the `Main.storyboard` file:
 
 ![Question Bot Storyboard](images/QuestionBotStoryboard.png "QuestionBot Storyboard image")
+
+![Question Bot Storyboard - iOS 15](images/iOS15Screenshot.png "QuestionBot Storyboard image for iOS 15")
+
+
 
 This is the user interface we're going to replicate in SwiftUI, and we're going to re-use the brains that you wrote in our SwiftUI version of the app.
 
