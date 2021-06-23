@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Greeting : Hashable {
+    let uuid = UUID()
     let question : String
     let answer : String
     let date : Date
@@ -22,6 +23,13 @@ struct ContentView: View {
     @State private var feedback = UINotificationFeedbackGenerator()
     
     @State var history : [Greeting] = []
+    @State var allHistory : [Greeting] = [] {
+        willSet {
+            self.history = newValue
+        }
+    }
+
+     @State var searchText = ""
     
     // Add our brains to the equation
     let questionAnswerer = MyQuestionAnswerer()
@@ -71,26 +79,41 @@ struct ContentView: View {
                     question: self.question,
                     answer: self.responseText,
                     date: Date())
-                self.history.insert(greeting, at: 0)
+                self.allHistory.insert(greeting, at: 0)
                 
                 if self.responseText.isEmpty || self.responseText == "🤷‍♀️" {
                     self.feedback.notificationOccurred(.error)
                 } else {
                     self.feedback.notificationOccurred(.success)
                 }
+                // Reset the question
+                self.question = ""
+                // Also clear the search text, if we've answered a new question
+                self.searchText = ""
             }
             .frame(width: 150, height: 50)
             .foregroundColor(.white)
             .background(Color.blue)
             .cornerRadius(10)
+            .searchable(text: $searchText)
+             .onChange(of: self.searchText) { searchText in
+                 if !searchText.isEmpty {
+                     history = allHistory.filter { $0.question.lowercased().contains(searchText.lowercased()) || $0.answer.lowercased().contains(searchText.lowercased()) }
+                 } else {
+                     history = allHistory
+                 }
+             }
             
             Spacer(minLength: 20)
             
-            if self.history.count > 0 {
+            if self.allHistory.count > 0 {
                 HStack{
                     Text("History (\(self.history.count))").font(.title3)
                     Spacer()
                 }
+                
+                TextField("Search:", text: $searchText)
+                 .textFieldStyle(.roundedBorder)
                 
                 List {
                     ForEach(self.history, id: \.self) { comm in
@@ -109,6 +132,7 @@ struct ContentView: View {
                         }
                         
                     }
+                    .onDelete(perform: deleteCommunication)
                 }
                 .listStyle(.insetGrouped)
                 .cornerRadius(10)
@@ -120,6 +144,10 @@ struct ContentView: View {
         .background(Color(.systemGray4).edgesIgnoringSafeArea(.all))
         
     }
+
+    func deleteCommunication(at offsets: IndexSet) {
+         self.history.remove(atOffsets: offsets)
+     }
 }
 
 struct ContentView_Previews: PreviewProvider {
