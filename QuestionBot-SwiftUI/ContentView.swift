@@ -101,9 +101,11 @@ struct ContentView: View {
                                 Text(comm.question)
                             }
                             .listRowBackground(Color.accentColor)
+                            //.listRowBackground(Color("QuestionColor"))
                             
                             Text(comm.answer)
                                 .listRowBackground(Color.gray)
+                                //.listRowBackground(Color("AnswerColor"))
                         }
                         
                     }
@@ -126,7 +128,7 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
                 .preferredColorScheme(.dark)
                 .previewDevice("iPhone 12 Pro")
-                .previewInterfaceOrientation(.portrait)
+                .previewInterfaceOrientation(.portraitUpsideDown)
         }
         
     }
