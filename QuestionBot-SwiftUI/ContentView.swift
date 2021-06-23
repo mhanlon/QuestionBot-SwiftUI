@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct Greeting : Hashable {
+    let question : String
+    let answer : String
+    let date : Date
+}
+
 struct ContentView: View {
     
     @State var responseText: String = "Hello Human, I'm QuestionBot.\nAsk me a question." // Add an @State property wrapper
@@ -15,7 +21,7 @@ struct ContentView: View {
     //Let's use some haptic feedback when we get an answer from the bot
     @State private var feedback = UINotificationFeedbackGenerator()
     
-    @State var communication : [String : String] = [:]
+    @State var communication : [Greeting] = []
     
     // Add our brains to the equation
     let questionAnswerer = MyQuestionAnswerer()
@@ -63,7 +69,8 @@ struct ContentView: View {
                 // And assign the answer to our `answerText` property to be displayed in the UI.
                 self.responseText = self.questionAnswerer.responseTo(question: self.question)
                 
-                self.communication[self.question] = self.responseText
+                let greeting = Greeting(question: self.question, answer: self.responseText, date: Date())
+                self.communication.insert(greeting, at: 0)
                 
                 if self.responseText.isEmpty || self.responseText == "🤷‍♀️" {
                     self.feedback.notificationOccurred(.error)
@@ -78,23 +85,27 @@ struct ContentView: View {
             
             Spacer()
             
+            HStack{
+                Text("History (\(self.communication.count))").font(.title3)
+                Spacer()
+            }
             List {
-                ForEach(self.communication.keys.sorted(), id: \.self) { comm in
+                ForEach(self.communication, id: \.self) { comm in
                     
-                    Section(footer: Text("\(Date(), formatter: Self.dateFormat)")) {
+                    Section(footer: Text("\(comm.date, formatter: Self.dateFormat)")) {
                         HStack {
                             Spacer()
-                            Text(comm)
+                            Text(comm.question)
                         }
                         .listRowBackground(Color.accentColor)
-                        Text(self.communication[comm]!)
+                        Text(comm.answer)
                             .listRowBackground(Color.gray)
                     }
                     
                 }
             }
             .listStyle(.insetGrouped)
-            .frame(maxHeight: 400)
+            .frame(maxHeight: 350)
             .cornerRadius(10)
         }
         .padding()
