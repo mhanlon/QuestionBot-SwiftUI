@@ -14,10 +14,15 @@ struct MyQuestionAnswerer {
         var answer = ""
         
         switch question {
-            case "Howdy" : answer = "Greetings!"
-            default: answer = ""
+            case "Ahoi" : answer = "Greetings!"
+            case "Aloha" : answer = "Mahalo!"
+            case "Hola" : answer = "Hola chica!"
+            case "Moin" : answer = "Moin"
+            case "Servus" : answer = "Ja Servus!"
+            default: answer = "... 🤷‍♀️ ?"
         }
         
         return answer
     }
 }
+
